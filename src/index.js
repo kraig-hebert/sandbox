@@ -1,12 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { ContextProvider } from './contexts/ContextProvider';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from './App';
+
+import { ThemeProvider } from 'react-jss';
+import { theme } from './themes/mainTheme';
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+
 root.render(
-  <ContextProvider>
-    <App />
-  </ContextProvider>
+  <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ThemeProvider>
 );

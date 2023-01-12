@@ -1,14 +1,9 @@
 import React from 'react';
 import './App.css';
-import { ThemeProvider } from '@mui/material/styles';
-import { theme } from './themes/mainTheme';
+import Main from './components/main/Main';
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <div className="App"></div>
-    </ThemeProvider>
-  );
+  return <Main />;
 }
 
 export default App;
