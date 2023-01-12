@@ -8,12 +8,7 @@ import { useTheme } from 'react-jss';
 import { useStyles } from './styles.js';
 
 const WeekCalendarColumn = (props) => {
-  const { dayFilteredEvents, maxAllDayEvents, type } = props;
-  const allDayEventsList = dayFilteredEvents.allDay;
-  const timedEventsList = dayFilteredEvents.timed;
-
   const ref = useRef();
-  const theme = useTheme();
 
   const renderedTimeBlocks = [];
 
@@ -27,17 +22,9 @@ const WeekCalendarColumn = (props) => {
     calendarWidth: calendarWidthValue,
   });
 
-  // returns height of a timeBlock based on how long event is
-  const calculateEventHeight = (event) => {
-    const diff = differenceInHours(event.endTime, event.startTime);
-    const height = diff * 30 + (diff - 3);
-    return height;
-  };
-
   // add midnight to column
   renderedTimeBlocks.push(
     <div className={classes.timeBlock} key={1}>
-      {/* {renderTimedEvents(0)} */}
       <div className={classes.time}>mid</div>
     </div>
   );
@@ -45,7 +32,6 @@ const WeekCalendarColumn = (props) => {
   for (let i = 1; i < 12; i++) {
     renderedTimeBlocks.push(
       <div className={classes.timeBlock} key={i + 1}>
-        {/* {renderTimedEvents(0)} */}
         <div className={classes.time}>{`${i}am`}</div>
       </div>
     );
@@ -53,7 +39,6 @@ const WeekCalendarColumn = (props) => {
   // add noon to the column
   renderedTimeBlocks.push(
     <div className={classes.timeBlock} key={13}>
-      {/* {renderTimedEvents(0)} */}
       <div className={classes.time}>noon</div>
     </div>
   );
@@ -61,7 +46,6 @@ const WeekCalendarColumn = (props) => {
   for (let i = 13; i < 24; i++) {
     renderedTimeBlocks.push(
       <div className={classes.timeBlock} key={i + 13}>
-        {/* {renderTimedEvents(0)} */}
         <div className={classes.time}>{`${i - 12}pm`}</div>
       </div>
     );
@@ -81,10 +65,8 @@ const WeekCalendarColumn = (props) => {
 WeekCalendarColumn.propTypes = {
   borderRight: PropTypes.bool,
   blockWidth: PropTypes.string,
-  dayFilteredEvents: PropTypes.object,
   displayTime: PropTypes.bool,
   height: PropTypes.string,
-  maxAllDayEvents: PropTypes.number,
   width: PropTypes.string,
 };
 
